@@ -1,6 +1,6 @@
 import {MongoClient} from "mongodb";
 
-const uri = 'mongodb+srv://Artsm14:Art!111418@alertpanelcluster.clvc5.mongodb.net/?retryWrites=true&w=majority&appName=AlertPanelCluster';
+const uri = process.env.MONGODB_URL;
 let client;
 
 const connectDB = async () => {
