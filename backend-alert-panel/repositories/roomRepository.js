@@ -13,6 +13,9 @@ const RoomRepository = {
     async updateRoom(db, id, room) {
         await db.collection(ROOMS_COLLECTION).updateOne({ _id: id }, { $set: room });
     },
+    async deleteRoom(db, id) {
+        await db.collection(ROOMS_COLLECTION).deleteOne({ _id: id });
+    }
 
 }
 
