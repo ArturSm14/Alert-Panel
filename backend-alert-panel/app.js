@@ -13,10 +13,6 @@ app.use(express.json());
 app.use(logMiddleware);
 app.use(rateLimitMiddleware)
 
-app.use('/', (req, res) => {
-    res.send('Hello, world!');
-})
-
 app.use("/room", roomRoutes)
 
 app.listen(PORT, async () => {
