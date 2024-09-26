@@ -1,11 +1,26 @@
 'use client';
 
 import InputLabel from "@/components/InputLabel/InputLabel"
+import RoundedButton from "@/components/RoundedButton/RoundedButton";
+import { createRoom } from "@/services/roomServices";
 import { CheckCircle, Pen, PlusCircle, Trash } from "@phosphor-icons/react/dist/ssr";
 import { useState } from "react";
 
 export default function RoomRegister(){
     const [roomFields, setRoomFields] = useState([]);
+
+    const [roomNumber, setRoomNumber] = useState("");
+    const [roomFloor, setRoomFloor] = useState("");
+    const [roomCapacity, setRoomCapacity] = useState("");
+
+    async function onSubmit(){
+        await createRoom({
+            number: roomNumber,
+            floor: roomFloor,
+            studentsCapacity: roomCapacity,
+            resources: roomFields.map(field => field.value)
+        })
+    }
 
     function switchEditable(fieldIdx){
         const newRoomFields = roomFields.map((field, idx) => {
@@ -57,9 +72,9 @@ export default function RoomRegister(){
     return <main className="flex min-h-screen gap-4 flex-grow flex-col items-start justify-start p-6">
         <h1 className="text-2xl font-bold">Registrar Sala</h1>
         <div className="flex gap-2">
-            <InputLabel label="Número da sala" />
-            <InputLabel label="Andar da sala" />
-            <InputLabel label="Capacidade de alunos" />
+            <InputLabel onChange={(e) => setRoomNumber(e.target.value)} label="Número da sala" />
+            <InputLabel onChange={(e) => setRoomFloor(e.target.value)} label="Andar da sala" />
+            <InputLabel onChange={(e) => setRoomCapacity(e.target.value)} label="Capacidade de alunos" />
         </div>
         <div className="flex gap-2">
             <p>Checklist</p>
@@ -71,6 +86,7 @@ export default function RoomRegister(){
                 {field.editable ? <CheckCircle weight="fill" size={20} className="text-emerald-800 cursor-pointer" onClick={() => switchEditable(fieldIdx)} /> : <Pen size={20} className="text-emerald-800 cursor-pointer" onClick={() => switchEditable(fieldIdx)} />}
                 <Trash id={fieldIdx} onClick={deleteField} size={20} className="text-emerald-800 cursor-pointer" />
             </div>
-        ))} 
+        ))}
+        <RoundedButton onClick={onSubmit} text="Registrar Sala" />
     </main>
 }

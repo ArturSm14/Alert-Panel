@@ -5,11 +5,12 @@ import SmallCard from "../SmallCard/SmallCard";
 export default function RoomModalContent({
     roomCapacity = "30",
     descriptionOfFail = "Sem ar-condicionado",
+    number = "302",
     onClose = () => { }
 }) {
     return <div className="min-w-80 flex flex-col gap-2">
         <div className="flex justify-between">
-            <SmallCard number="302" variant="orange" />
+            <SmallCard number={number} variant="orange" />
             <div className="flex-shrink">
                 <X size={24} color="black" className="cursor-pointer" onClick={onClose} />
             </div>

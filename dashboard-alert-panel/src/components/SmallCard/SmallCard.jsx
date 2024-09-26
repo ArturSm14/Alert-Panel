@@ -10,7 +10,7 @@ export default function SmallCard({
         orange: "bg-orange-500 border-orange-700",
     }
 
-    return <div onClick={onClick} className={`cursor-pointer flex-1 min-w-32 max-w-32 h-20 max-h-20 
+    return <div onClick={onClick} className={`cursor-pointer flex-1 min-w-32 max-w-32 h-28 max-h-28 
     bg-green-700 border-[2px] border-green-900 rounded-xl p-8 flex justify-center items-center flex-col text-white ${VARIANT[variant]}`}>
         <div className="flex">
             <Bank size={40} color="white" />
