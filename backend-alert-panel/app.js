@@ -3,6 +3,7 @@ import logMiddleware from './middlewares/logMiddleware.js';
 import rateLimitMiddleware from './middlewares/rateLimitMiddleware.js';
 import roomRoutes from './routes/roomRoutes.js';
 import employeeRoutes from './routes/employeeRoutes.js';
+import authRoutes from './routes/authRoutes.js';
 import cors from 'cors';
 
 import { connectDB } from './config/db.js';
@@ -19,6 +20,7 @@ app.use(rateLimitMiddleware)
 
 app.use("/room", roomRoutes)
 app.use("/employees", employeeRoutes);
+app.use("/auth", authRoutes);
 
 app.listen(PORT, async () => {
     console.log(`Server is running on port ${PORT}`);
